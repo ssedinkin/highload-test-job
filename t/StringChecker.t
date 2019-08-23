@@ -38,9 +38,9 @@ describe 'StringChecker::_validate_data_or_die' => sub {
         ok $@ =~ /string expected/;
     };
 
-    it 'dies with error "wrong sting"' => sub {
+    it 'dies with error "wrong string"' => sub {
         dies_ok sub { StringChecker::_validate_data_or_die( '[abc]' ) };
-        ok $@ =~ /wrong sting/;
+        ok $@ =~ /wrong string/;
     };
 
     it 'returns 1' => sub {
