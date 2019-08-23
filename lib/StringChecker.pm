@@ -112,7 +112,10 @@ OUT:
 sub _validate_brackets_data {
     my ( $data, $allow_empty_string ) = @_;
 
-    confess 'string expected'  if ref $data || !length $data && !$allow_empty_string;
+    confess 'string expected'  unless $allow_empty_string
+                                      ? _is_string( $data )
+                                      : _is_not_empty_string( $data );
+
     confess 'wrong string'     if $data =~ /[^\[\](){}]/;
 
     return 1;
