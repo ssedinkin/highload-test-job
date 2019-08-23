@@ -130,6 +130,33 @@ describe 'StringChecker::_validate_brackets_data' => sub {
     };
 };
 
+describe 'StringChecker::_validate_regexp_data' => sub {
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { StringChecker::_validate_regexp_data() };
+        ok $@ =~ /string expected/;
+
+        $@ = undef;
+    };
+
+    it 'returns 1' => sub {
+        is
+            StringChecker::_validate_regexp_data( '[]' ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            StringChecker::_validate_regexp_data( '.' ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            StringChecker::_validate_regexp_data( 'not empty string' ),
+            1;
+    };
+};
+
 describe 'StringChecker::validate_data' => sub {
     before each => sub {
         $@ = undef;
