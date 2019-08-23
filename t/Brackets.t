@@ -139,6 +139,18 @@ describe 'Brackets::_validate_data_or_die' => sub {
         dies_ok sub { Brackets::_validate_data_or_die( '[abc]' ) };
         ok $@ =~ /wrong sting/;
     };
+
+    it 'returns 1' => sub {
+        is
+            Brackets::_validate_data_or_die( '[]' ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            Brackets::_validate_data_or_die( '[()[]{]' ),
+            1;
+    };
 };
 
 runtests unless caller;
