@@ -38,6 +38,9 @@ sub validate_data {
     if ( $task_name eq 'brackets' ) {
         return _validate_brackets_data( $data, $allow_empty );
     }
+    elsif ( $task_name eq 'regexp' ) {
+        return _validate_regexp_data( $data );
+    }
     else {
         confess 'task_name parameter invalid';
     }
