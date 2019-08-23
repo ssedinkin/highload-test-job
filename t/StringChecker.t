@@ -157,13 +157,13 @@ describe 'StringChecker::validate_data' => sub {
     };
 
     it 'dies with error "task_name parameter invalid"' => sub {
-        StringChecker->expects( 'validate_data' )->returns( sub { die } );
+        StringChecker->expects( '_validate_brackets_data' )->returns( sub { die } );
 
         dies_ok sub { StringChecker::validate_data( 0, 'brackets' ) };
     };
 
     it 'returns 1' => sub {
-        StringChecker->expects( 'validate_data' )->returns( 1 );
+        StringChecker->expects( '_validate_brackets_data' )->returns( 1 );
 
         is
             StringChecker::validate_data( 0, 'brackets', 'any_valid_data' ),
