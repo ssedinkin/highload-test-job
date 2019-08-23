@@ -52,8 +52,7 @@ OUT:
 sub delete_balanced_brackets_recursively {
     my ( $string ) = @_;
 
-    confess 'string expected'  if ( ref $string || !length $string );
-    confess 'wrong sting'      if $string =~ /[^\[\](){}]/;
+    _validate_data_or_die( $string );
 }
 
 =head2 _validate_data_or_die
