@@ -13,6 +13,50 @@ use Test::Exception;
 
 use_ok 'StringChecker';
 
+describe 'StringChecker::_is_string' => sub {
+    it 'returns 0' => sub {
+        is
+           StringChecker::_is_string(),
+           0;
+    };
+
+    it 'returns 0' => sub {
+        is
+           StringChecker::_is_string( [] ),
+           0;
+    };
+
+    it 'returns 0' => sub {
+        is
+           StringChecker::_is_string( {} ),
+           0;
+    };
+
+    it 'returns 1' => sub {
+        is
+           StringChecker::_is_string( '' ),
+           1;
+    };
+
+    it 'returns 1' => sub {
+        is
+           StringChecker::_is_string( 'abcd' ),
+           1;
+    };
+
+    it 'returns 1' => sub {
+        is
+           StringChecker::_is_string( '[abcd]' ),
+           1;
+    };
+
+    it 'returns 1' => sub {
+        is
+           StringChecker::_is_string( '{ abcd => "abcd" }' ),
+           1;
+    };
+};
+
 describe 'StringChecker::_validate_data_or_die' => sub {
     before each => sub {
         $@ = undef;
