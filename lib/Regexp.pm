@@ -29,7 +29,13 @@ OUT:
 sub delete_words_by_regexp {
     my ( $string ) = @_;
 
-    StringChecker::validate_data( 0, 'brackets', $string );
+    StringChecker::validate_data( 0, 'regexp', $string );
+
+    my $new_string = $string;
+
+    $new_string =~ s/\b(\w)\w*\1\w*//g;
+
+    return $new_string;
 }
 
 1;
