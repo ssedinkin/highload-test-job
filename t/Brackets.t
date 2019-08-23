@@ -86,44 +86,55 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
 };
 
 describe 'Brackets::_validate_data_or_die' => sub {
+    my $allow_empty_string;
+
     before each => sub {
+        $allow_empty_string = 0;
         $@ = undef;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die() };
+        dies_ok sub { Brackets::_validate_data_or_die( undef, $allow_empty_string ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( [] ) };
+        dies_ok sub { Brackets::_validate_data_or_die( [], $allow_empty_string  ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( {} ) };
+        dies_ok sub { Brackets::_validate_data_or_die( {}, $allow_empty_string  ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( '' ) };
+        dies_ok sub { Brackets::_validate_data_or_die( '', $allow_empty_string  ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "wrong sting"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( '[abc]' ) };
+        dies_ok sub { Brackets::_validate_data_or_die( '[abc]', $allow_empty_string  ) };
         ok $@ =~ /wrong sting/;
     };
 
     it 'returns 1' => sub {
+        $allow_empty_string = 1;
+
         is
-            Brackets::_validate_data_or_die( '[]' ),
+            Brackets::_validate_data_or_die( '', $allow_empty_string  ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            Brackets::_validate_data_or_die( '[()[]{]' ),
+            Brackets::_validate_data_or_die( '[]', $allow_empty_string  ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            Brackets::_validate_data_or_die( '[()[]{]', $allow_empty_string  ),
             1;
     };
 };
