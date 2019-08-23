@@ -21,14 +21,16 @@ use Carp qw/ confess /;
 IN:
     $allow_empty - пустая строка разрешена
     $task_name   - имя задания, которое надо проверять
+    $data        - данные, которые проверяем
 
 OUT:
     die - $allow_empty невалидный
+          $task_name невалидный
 
 =cut
 
 sub validate_data {
-    my ( $allow_empty, $task_name ) = @_;
+    my ( $allow_empty, $task_name, $data ) = @_;
 
     confess 'allow_empty parameter invalid'  unless _is_not_empty_string( $allow_empty );
     confess 'task_name parameter invalid'    unless _is_not_empty_string( $task_name );
