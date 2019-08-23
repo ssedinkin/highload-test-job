@@ -156,7 +156,7 @@ describe 'StringChecker::validate_data' => sub {
         ok $@ =~ /task_name parameter invalid/;
     };
 
-    it 'dies with error "task_name parameter invalid"' => sub {
+    it 'dies if data parameter invalid' => sub {
         StringChecker->expects( '_validate_brackets_data' )->returns( sub { die } );
 
         dies_ok sub { StringChecker::validate_data( 0, 'brackets' ) };
