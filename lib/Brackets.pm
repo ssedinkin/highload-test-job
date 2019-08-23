@@ -105,7 +105,7 @@ OUT:
 sub _validate_data_or_die {
     my ( $data, $allow_empty_string ) = @_;
 
-    return StringChecker::_validate_data_or_die( $data, $allow_empty_string );
+    return StringChecker::validate_data( $allow_empty_string, 'brackets', $data );
 }
 
 1;
