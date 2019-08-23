@@ -23,6 +23,18 @@ describe 'Regexp::delete_words_by_regexp' => sub {
 
         dies_ok sub { Regexp::delete_words_by_regexp( 'any_invalid_data' ) };
     };
+
+    it 'returns as is' => sub {
+        is
+           Regexp::delete_words_by_regexp( 'ret string as is' ),
+           'ret string as is';
+    };
+
+    it 'returns new string' => sub {
+        is
+           Regexp::delete_words_by_regexp( 'returns new string' ),
+           ' new string';
+    };
 };
 
 runtests unless caller;
