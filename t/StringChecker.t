@@ -67,12 +67,16 @@ describe 'StringChecker::_is_not_empty_string' => sub {
     };
 
     it 'returns 0' => sub {
+        StringChecker->expects( '_is_string' )->returns( 1 );
+ 
         is
            StringChecker::_is_not_empty_string( '' ),
            0;
     };
 
     it 'returns 1' => sub {
+        StringChecker->expects( '_is_string' )->returns( 1 );
+
         is
            StringChecker::_is_not_empty_string( 'not_empty_string' ),
            1;
