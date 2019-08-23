@@ -59,6 +59,24 @@ describe 'Brackets::check_brackets_balance' => sub {
             Brackets::check_brackets_balance( '(){}]' ),
             0;
     };
+
+    it 'returns 0' => sub {
+        is
+            Brackets::check_brackets_balance( '({)}' ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        is
+            Brackets::check_brackets_balance( '{([)}]' ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        is
+            Brackets::check_brackets_balance( '{}[(]())' ),
+            0;
+    };
 };
 
 runtests unless caller;
