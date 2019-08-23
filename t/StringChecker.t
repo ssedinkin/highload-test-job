@@ -150,6 +150,11 @@ describe 'StringChecker::validate_data' => sub {
         dies_ok sub { StringChecker::validate_data( 0 ) };
         ok $@ =~ /task_name parameter invalid/;
     };
+
+    it 'dies with error "task_name parameter invalid"' => sub {
+        dies_ok sub { StringChecker::validate_data( 0, 'bad name' ) };
+        ok $@ =~ /task_name parameter invalid/;
+    };
 };
 
 runtests unless caller;
