@@ -51,7 +51,12 @@ OUT:
 sub delete_balanced_brackets_recursively {
     my ( $string ) = @_;
 
-    _validate_data_or_die( $string );
+    # Разрешаем пустые строки
+    _validate_data_or_die( $string, 1 );
+
+    # Пустая строка - базовый вариант рекурсии
+    # Если на входе пустая строка, значит, все сбалансированно
+    return $string  if $string eq '';
 }
 
 =head2 _validate_data_or_die
