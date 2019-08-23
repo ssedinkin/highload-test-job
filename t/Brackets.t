@@ -79,4 +79,35 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 };
 
+describe 'Brackets::delete_balanced_brackets_recursively' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively() };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively( [] ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively( {} ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively( '' ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "wrong sting"' => sub {
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively( '[abc]' ) };
+        ok $@ =~ /wrong sting/;
+    };
+};
+
 runtests unless caller;
