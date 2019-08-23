@@ -7,7 +7,11 @@ package Brackets;
 
 =cut
 
+use lib::abs '../lib';
+
 use Carp qw/ confess /;
+
+use StringChecker;
 
 =head2 check_brackets
 
@@ -100,10 +104,7 @@ OUT:
 sub _validate_data_or_die {
     my ( $data, $allow_empty_string ) = @_;
 
-    confess 'string expected'  if ref $data || !length $data && !$allow_empty_string;
-    confess 'wrong sting'      if $data =~ /[^\[\](){}]/;
-
-    return 1;
+    return StringChecker::_validate_data_or_die( $data, $allow_empty_string );
 }
 
 1;
