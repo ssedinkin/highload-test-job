@@ -42,6 +42,11 @@ describe 'Brackets::check_brackets_balance' => sub {
         dies_ok sub { Brackets::check_brackets_balance( '' ) };
         ok $@ =~ /string expected/;
     };
+
+    it 'dies with error "wrong sting"' => sub {
+        dies_ok sub { Brackets::check_brackets_balance( '[abc]' ) };
+        ok $@ =~ /wrong sting/;
+    };
 };
 
 runtests unless caller;
