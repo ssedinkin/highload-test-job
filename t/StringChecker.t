@@ -57,6 +57,28 @@ describe 'StringChecker::_is_string' => sub {
     };
 };
 
+describe 'StringChecker::_is_not_empty_string' => sub {
+    it 'returns 0' => sub {
+        StringChecker->expects( '_is_string' )->returns( 0 );
+
+        is
+           StringChecker::_is_not_empty_string( 'not_string' ),
+           0;
+    };
+
+    it 'returns 0' => sub {
+        is
+           StringChecker::_is_not_empty_string( '' ),
+           0;
+    };
+
+    it 'returns 1' => sub {
+        is
+           StringChecker::_is_not_empty_string( 'not_empty_string' ),
+           1;
+    };
+};
+
 describe 'StringChecker::_validate_data_or_die' => sub {
     before each => sub {
         $@ = undef;
