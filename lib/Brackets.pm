@@ -7,4 +7,28 @@ package Brackets;
 
 =cut
 
+use Carp qw/ confess /;
+
+=head2 check_brackets
+
+Функция, которая проверяет, что баланс скобок в строке соблюдается.
+На вход надо подавать строку, которая состоит из символов:
+    '(', ')', '[', ']', '{', '}'
+
+IN:
+    $string - строка
+
+OUT:
+    die - $string - не строка, которую ожидаем на входе
+    0   - баланс скобок не соблюдается
+    1   - баланс скобок соблюдается
+
+=cut
+
+sub check_brackets_balance {
+    my ( $string ) = @_;
+
+    confess 'string expected'  if ( ref $string || !length $string );
+}
+
 1;
