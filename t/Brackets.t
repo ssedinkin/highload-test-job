@@ -81,6 +81,46 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
             '';
     };
 
+    it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+
+        is
+            Brackets::delete_balanced_brackets_recursively( '[]' ),
+            '';
+    };
+
+    it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+
+        is
+            Brackets::delete_balanced_brackets_recursively( '[](){}' ),
+            '';
+    };
+
+    it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+
+        is
+            Brackets::delete_balanced_brackets_recursively( '[({})](){}' ),
+            '';
+    };
+
+    it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+
+        is
+            Brackets::delete_balanced_brackets_recursively( '[({})]({{[]}}){}' ),
+            '';
+    };
+
+    it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+
+        is
+            Brackets::delete_balanced_brackets_recursively( '([({})]({{[]}}){})' ),
+            '';
+    };
+
     it 'returns not empty string' => sub {
         Brackets->expects( '_validate_data_or_die' )->returns( 1 );
 
