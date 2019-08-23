@@ -29,6 +29,7 @@ sub check_brackets_balance {
     my ( $string ) = @_;
 
     confess 'string expected'  if ( ref $string || !length $string );
+    confess 'wrong sting'      if $string =~ /[^\[\](){}]/;
 }
 
 1;
