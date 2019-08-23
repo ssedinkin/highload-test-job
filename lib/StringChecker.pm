@@ -20,6 +20,7 @@ use Carp qw/ confess /;
 
 IN:
     $allow_empty - пустая строка разрешена
+    $task_name   - имя задания, которое надо проверять
 
 OUT:
     die - $allow_empty невалидный
@@ -27,9 +28,10 @@ OUT:
 =cut
 
 sub validate_data {
-    my ( $allow_empty ) = @_;
+    my ( $allow_empty, $task_name ) = @_;
 
     confess 'allow_empty parameter invalid'  unless _is_not_empty_string( $allow_empty );
+    confess 'task_name parameter invalid'    unless _is_not_empty_string( $task_name );
 }
 
 =head2 _is_string
