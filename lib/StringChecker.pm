@@ -9,6 +9,26 @@ package StringChecker;
 
 use Carp qw/ confess /;
 
+=head2 validate_data
+
+Проверить входящие данные. Строка ли это?
+Пустая строка - строка.
+Непустая строка - строка.
+Массивы, хэши, undef и прочая фигня - не строка
+
+IN:
+    $allow_empty - пустая строка разрешена
+
+OUT:
+
+=cut
+
+sub validate_data {
+    my ( $allow_empty ) = @_;
+
+    confess 'allow_empty parameter invalid'  unless _is_not_empty_string( $allow_empty );
+}
+
 =head2 _is_string
 
 Проверить входящие данные. Строка ли это?
