@@ -35,6 +35,18 @@ describe 'Regexp::delete_words_by_regexp' => sub {
            Regexp::delete_words_by_regexp( 'returns new string' ),
            ' new string';
     };
+
+    it 'returns new string' => sub {
+        is
+           Regexp::delete_words_by_regexp( 'www' ),
+           '';
+    };
+
+    it 'returns new string' => sub {
+        is
+           Regexp::delete_words_by_regexp( 'parrot' ),
+           '';
+    };
 };
 
 runtests unless caller;
