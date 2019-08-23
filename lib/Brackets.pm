@@ -61,7 +61,8 @@ sub delete_balanced_brackets_recursively {
 Если это не так, упадет.
 
 IN:
-    $data - входящие данные
+    $data               - входящие данные
+    $allow_empty_string - разрешить пустую строку
 
 OUT:
     die - $string - не строка, которую ожидаем на входе
@@ -70,9 +71,9 @@ OUT:
 =cut
 
 sub _validate_data_or_die {
-    my ( $data ) = @_;
+    my ( $data, $allow_empty_string ) = @_;
 
-    confess 'string expected'  if ( ref $data || !length $data );
+    confess 'string expected'  if ref $data || !length $data && !$allow_empty_string;
     confess 'wrong sting'      if $data =~ /[^\[\](){}]/;
 
     return 1;
