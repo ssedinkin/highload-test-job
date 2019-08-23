@@ -91,22 +91,16 @@ describe 'StringChecker::_validate_brackets_data' => sub {
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_brackets_data() };
+        StringChecker->expects( '_is_not_empty_string' )->returns( 0 );
+
+        dies_ok sub { StringChecker::_validate_brackets_data( undef, 0 ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_brackets_data( [] ) };
-        ok $@ =~ /string expected/;
-    };
+        StringChecker->expects( '_is_string' )->returns( 0 );
 
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_brackets_data( {} ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_brackets_data( '' ) };
+        dies_ok sub { StringChecker::_validate_brackets_data( undef, 1 ) };
         ok $@ =~ /string expected/;
     };
 
