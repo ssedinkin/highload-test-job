@@ -121,4 +121,25 @@ sub _validate_brackets_data {
     return 1;
 }
 
+=head2 _validate_regexp_data
+
+Валидация входных данных. На входе мы ждем непустую строку.
+
+IN:
+    $data - входящие данные
+
+OUT:
+    die - $string - не строка, которую ожидаем на входе
+    1   - строка валидная
+
+=cut
+
+sub _validate_regexp_data {
+    my ( $data ) = @_;
+
+    confess 'string expected'  unless _is_not_empty_string( $data );
+
+    return 1;
+}
+
 1;
