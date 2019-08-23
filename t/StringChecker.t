@@ -134,4 +134,15 @@ describe 'StringChecker::_validate_data_or_die' => sub {
     };
 };
 
+describe 'StringChecker::validate_data' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "allow_empty parameter invalid"' => sub {
+        dies_ok sub { StringChecker::validate_data() };
+        ok $@ =~ /allow_empty parameter invalid/;
+    };
+};
+
 runtests unless caller;
