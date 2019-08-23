@@ -34,6 +34,13 @@ sub validate_data {
 
     confess 'allow_empty parameter invalid'  unless _is_not_empty_string( $allow_empty );
     confess 'task_name parameter invalid'    unless _is_not_empty_string( $task_name );
+
+    if ( $task_name eq 'brackets' ) {
+        return _validate_data_or_die( $data, $allow_empty );
+    }
+    else {
+        confess 'task_name parameter invalid';
+    }
 }
 
 =head2 _is_string
