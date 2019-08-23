@@ -26,7 +26,7 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
 
         is
             Brackets::check_brackets_balance( '(' ),
@@ -34,7 +34,7 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
 
         is
             Brackets::check_brackets_balance( '(){}]' ),
@@ -42,7 +42,7 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
 
         is
             Brackets::check_brackets_balance( '({)}' ),
@@ -50,7 +50,7 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
 
         is
             Brackets::check_brackets_balance( '{([)}]' ),
@@ -58,7 +58,7 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
 
         is
             Brackets::check_brackets_balance( '{}[(]())' ),
