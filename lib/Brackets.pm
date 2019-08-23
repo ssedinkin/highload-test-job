@@ -34,4 +34,26 @@ sub check_brackets_balance {
     return 0  if ( length $string ) % 2 != 0;
 }
 
+=head2 delete_balanced_brackets_recursively
+
+Функция, которая удалит парные скобки, которые идут подряд:
+    '[]',
+    '{}',
+    '()',
+
+IN:
+    $string - строка
+
+OUT:
+    die - $string - не строка, которую ожидаем на входе
+
+=cut
+
+sub delete_balanced_brackets_recursively {
+    my ( $string ) = @_;
+
+    confess 'string expected'  if ( ref $string || !length $string );
+    confess 'wrong sting'      if $string =~ /[^\[\](){}]/;
+}
+
 1;
