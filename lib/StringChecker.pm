@@ -7,6 +7,8 @@ package StringChecker;
 
 =cut
 
+use strict;
+use warnings;
 use Carp qw/ confess /;
 
 =head2 validate_data
@@ -20,6 +22,7 @@ IN:
     $allow_empty - пустая строка разрешена
 
 OUT:
+    die - $allow_empty невалидный
 
 =cut
 

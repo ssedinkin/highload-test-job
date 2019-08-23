@@ -13,6 +13,8 @@
 
 use lib::abs '../lib';
 
+use strict;
+use warnings;
 use Test::Spec;
 use Test::Exception;
 

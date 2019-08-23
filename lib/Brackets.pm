@@ -9,7 +9,8 @@ package Brackets;
 
 use lib::abs '../lib';
 
-use Carp qw/ confess /;
+use strict;
+use warnings;
 
 use StringChecker;
 
