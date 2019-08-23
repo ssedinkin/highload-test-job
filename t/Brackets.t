@@ -26,43 +26,21 @@ describe 'Brackets::check_brackets_balance' => sub {
     };
 
     it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( 'delete_balanced_brackets_recursively' )->returns( '{(})' );
 
         is
-            Brackets::check_brackets_balance( '(' ),
+            Brackets::check_brackets_balance( 'unbalanced' ),
             0;
     };
 
-    it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
+    it 'returns 1' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+        Brackets->expects( 'delete_balanced_brackets_recursively' )->returns( '' );
 
         is
-            Brackets::check_brackets_balance( '(){}]' ),
-            0;
-    };
-
-    it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
-
-        is
-            Brackets::check_brackets_balance( '({)}' ),
-            0;
-    };
-
-    it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
-
-        is
-            Brackets::check_brackets_balance( '{([)}]' ),
-            0;
-    };
-
-    it 'returns 0' => sub {
-        Brackets->expects( '_validate_data_or_die' )->returns( 1 )->any_number;
-
-        is
-            Brackets::check_brackets_balance( '{}[(]())' ),
-            0;
+            Brackets::check_brackets_balance( 'balanced' ),
+            1;
     };
 };
 
