@@ -9,6 +9,31 @@ package StringChecker;
 
 use Carp qw/ confess /;
 
+=head2 _is_string
+
+Проверить входящие данные. Строка ли это?
+Пустая строка - строка.
+Непустая строка - строка.
+Массивы, хэши, undef и прочая фигня - не строка
+
+IN:
+    $data - входящие данные
+
+OUT:
+    0 - не строка
+    1 - строка
+
+=cut
+
+sub _is_string {
+    my ( $data ) = @_;
+
+    return 0  unless defined $data;
+    return 0  if ref $data;
+
+    return 1;
+}
+
 =head2 _validate_data_or_die
 
 Валидация входных данных. На входе мы ждем строку, которая состоит из символов:
