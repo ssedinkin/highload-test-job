@@ -110,4 +110,35 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
     };
 };
 
+describe 'Brackets::_validate_data_or_die' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::_validate_data_or_die() };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::_validate_data_or_die( [] ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::_validate_data_or_die( {} ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::_validate_data_or_die( '' ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "wrong sting"' => sub {
+        dies_ok sub { Brackets::_validate_data_or_die( '[abc]' ) };
+        ok $@ =~ /wrong sting/;
+    };
+};
+
 runtests unless caller;
