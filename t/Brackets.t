@@ -162,13 +162,13 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
 
 describe 'Brackets::_validate_data_or_die' => sub {
     it 'dies' => sub {
-        StringChecker->expects( '_validate_data_or_die' )->returns( sub { die } );
+        StringChecker->expects( 'validate_data' )->returns( sub { die } );
 
         dies_ok sub { Brackets::_validate_data_or_die( 'any_invalid_data' ) };
     };
 
     it 'returns 1' => sub {
-        StringChecker->expects( '_validate_data_or_die' )->returns( 1 );
+        StringChecker->expects( 'validate_data' )->returns( 1 );
 
         is
             Brackets::_validate_data_or_die( 'any_valid_data' ),
