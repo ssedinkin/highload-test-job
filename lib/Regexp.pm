@@ -33,7 +33,7 @@ sub delete_words_by_regexp {
 
     my $new_string = $string;
 
-    $new_string =~ s/\b(\w)\w*\1\w*//g;
+    $new_string =~ s/\b\w*(\w)\w*\1\w*//g;
 
     return $new_string;
 }
