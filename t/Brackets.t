@@ -71,6 +71,12 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
         dies_ok sub { Brackets::delete_balanced_brackets_recursively() };
     };
 
+    it 'returns empty string' => sub {
+        is
+            Brackets::delete_balanced_brackets_recursively( '' ),
+            '';
+    };
+
     it 'returns not empty string' => sub {
         Brackets->expects( '_validate_data_or_die' )->returns( 1 );
         is
