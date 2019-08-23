@@ -56,4 +56,25 @@ sub delete_balanced_brackets_recursively {
     confess 'wrong sting'      if $string =~ /[^\[\](){}]/;
 }
 
+=head2 _validate_data_or_die
+
+Валидация входных данных. На входе мы ждем строку, которая состоит из символов:
+    '(', ')', '[', ']', '{', '}'
+Если это не так, упадет.
+
+IN:
+    $data - входящие данные
+
+OUT:
+    die - $string - не строка, которую ожидаем на входе
+
+=cut
+
+sub _validate_data_or_die {
+    my ( $data ) = @_;
+
+    confess 'string expected'  if ( ref $data || !length $data );
+    confess 'wrong sting'      if $data =~ /[^\[\](){}]/;
+}
+
 1;
