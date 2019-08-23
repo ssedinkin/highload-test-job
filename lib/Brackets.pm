@@ -31,6 +31,15 @@ sub check_brackets_balance {
     _validate_data_or_die( $string );
 
     return 0  if ( length $string ) % 2 != 0;
+
+    my $cleared_string = delete_balanced_brackets_recursively( $string );
+
+    if ( length $cleared_string ) {
+        return 0;
+    }
+    else {
+        return 1;
+    }
 }
 
 =head2 delete_balanced_brackets_recursively
