@@ -18,4 +18,30 @@ use Test::Exception;
 
 use_ok 'Brackets';
 
+describe 'Brackets::check_brackets_balance' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::check_brackets_balance() };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::check_brackets_balance( [] ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::check_brackets_balance( {} ) };
+        ok $@ =~ /string expected/;
+    };
+
+    it 'dies with error "string expected"' => sub {
+        dies_ok sub { Brackets::check_brackets_balance( '' ) };
+        ok $@ =~ /string expected/;
+    };
+};
+
 runtests unless caller;
