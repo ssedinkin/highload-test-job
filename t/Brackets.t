@@ -21,6 +21,7 @@ use_ok 'Brackets';
 describe 'Brackets::check_brackets_balance' => sub {
     it 'dies' => sub {
         Brackets->expects( '_validate_data_or_die' )->returns( sub { die } );
+
         dies_ok sub { Brackets::delete_balanced_brackets_recursively() };
     };
 
@@ -68,10 +69,13 @@ describe 'Brackets::check_brackets_balance' => sub {
 describe 'Brackets::delete_balanced_brackets_recursively' => sub {
     it 'dies' => sub {
         Brackets->expects( '_validate_data_or_die' )->returns( sub { die } );
+
         dies_ok sub { Brackets::delete_balanced_brackets_recursively() };
     };
 
     it 'returns empty string' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::delete_balanced_brackets_recursively( '' ),
             '';
@@ -79,6 +83,7 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
 
     it 'returns not empty string' => sub {
         Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::delete_balanced_brackets_recursively( '[{]}' ),
             '[{]}';
