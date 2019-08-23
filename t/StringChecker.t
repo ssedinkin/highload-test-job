@@ -190,6 +190,20 @@ describe 'StringChecker::validate_data' => sub {
             StringChecker::validate_data( 0, 'brackets', 'any_valid_data' ),
             1;
     };
+
+    it 'dies if data parameter invalid' => sub {
+        StringChecker->expects( '_validate_regexp_data' )->returns( sub { die } );
+
+        dies_ok sub { StringChecker::validate_data( 0, 'regexp' ) };
+    };
+
+    it 'returns 1' => sub {
+        StringChecker->expects( '_validate_regexp_data' )->returns( 1 );
+
+        is
+            StringChecker::validate_data( 0, 'regexp', 'any_valid_data' ),
+            1;
+    };
 };
 
 runtests unless caller;
