@@ -19,60 +19,46 @@ use Test::Exception;
 use_ok 'Brackets';
 
 describe 'Brackets::check_brackets_balance' => sub {
-    before each => sub {
-        $@ = undef;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::check_brackets_balance() };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::check_brackets_balance( [] ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::check_brackets_balance( {} ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::check_brackets_balance( '' ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "wrong sting"' => sub {
-        dies_ok sub { Brackets::check_brackets_balance( '[abc]' ) };
-        ok $@ =~ /wrong sting/;
+    it 'dies' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( sub { die } );
+        dies_ok sub { Brackets::delete_balanced_brackets_recursively() };
     };
 
     it 'returns 0' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::check_brackets_balance( '(' ),
             0;
     };
 
     it 'returns 0' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::check_brackets_balance( '(){}]' ),
             0;
     };
 
     it 'returns 0' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::check_brackets_balance( '({)}' ),
             0;
     };
 
     it 'returns 0' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::check_brackets_balance( '{([)}]' ),
             0;
     };
 
     it 'returns 0' => sub {
+        Brackets->expects( '_validate_data_or_die' )->returns( 1 );
+
         is
             Brackets::check_brackets_balance( '{}[(]())' ),
             0;
