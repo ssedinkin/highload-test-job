@@ -67,6 +67,7 @@ IN:
 
 OUT:
     die - $string - не строка, которую ожидаем на входе
+    1   - строка валидная
 
 =cut
 
@@ -75,6 +76,8 @@ sub _validate_data_or_die {
 
     confess 'string expected'  if ( ref $data || !length $data );
     confess 'wrong sting'      if $data =~ /[^\[\](){}]/;
+
+    return 1;
 }
 
 1;
