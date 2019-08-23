@@ -85,33 +85,33 @@ describe 'StringChecker::_is_not_empty_string' => sub {
     };
 };
 
-describe 'StringChecker::_validate_data_or_die' => sub {
+describe 'StringChecker::_validate_brackets_data' => sub {
     before each => sub {
         $@ = undef;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_data_or_die() };
+        dies_ok sub { StringChecker::_validate_brackets_data() };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_data_or_die( [] ) };
+        dies_ok sub { StringChecker::_validate_brackets_data( [] ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_data_or_die( {} ) };
+        dies_ok sub { StringChecker::_validate_brackets_data( {} ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "string expected"' => sub {
-        dies_ok sub { StringChecker::_validate_data_or_die( '' ) };
+        dies_ok sub { StringChecker::_validate_brackets_data( '' ) };
         ok $@ =~ /string expected/;
     };
 
     it 'dies with error "wrong string"' => sub {
-        dies_ok sub { StringChecker::_validate_data_or_die( '[abc]' ) };
+        dies_ok sub { StringChecker::_validate_brackets_data( '[abc]' ) };
         ok $@ =~ /wrong string/;
     };
 
@@ -119,19 +119,19 @@ describe 'StringChecker::_validate_data_or_die' => sub {
         my $allow_empty_string = 1;
 
         is
-            StringChecker::_validate_data_or_die( '', $allow_empty_string ),
+            StringChecker::_validate_brackets_data( '', $allow_empty_string ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            StringChecker::_validate_data_or_die( '[]' ),
+            StringChecker::_validate_brackets_data( '[]' ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            StringChecker::_validate_data_or_die( '[()[]{]' ),
+            StringChecker::_validate_brackets_data( '[()[]{]' ),
             1;
     };
 };

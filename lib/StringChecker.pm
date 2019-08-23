@@ -36,7 +36,7 @@ sub validate_data {
     confess 'task_name parameter invalid'    unless _is_not_empty_string( $task_name );
 
     if ( $task_name eq 'brackets' ) {
-        return _validate_data_or_die( $data, $allow_empty );
+        return _validate_brackets_data( $data, $allow_empty );
     }
     else {
         confess 'task_name parameter invalid';
@@ -93,7 +93,7 @@ sub _is_not_empty_string {
     return 1;
 }
 
-=head2 _validate_data_or_die
+=head2 _validate_brackets_data
 
 Валидация входных данных. На входе мы ждем строку, которая состоит из символов:
     '(', ')', '[', ']', '{', '}'
@@ -109,7 +109,7 @@ OUT:
 
 =cut
 
-sub _validate_data_or_die {
+sub _validate_brackets_data {
     my ( $data, $allow_empty_string ) = @_;
 
     confess 'string expected'  if ref $data || !length $data && !$allow_empty_string;
