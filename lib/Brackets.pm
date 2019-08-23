@@ -57,6 +57,19 @@ sub delete_balanced_brackets_recursively {
     # Пустая строка - базовый вариант рекурсии
     # Если на входе пустая строка, значит, все сбалансированно
     return $string  if $string eq '';
+
+    my $new_string = $string;
+    $new_string =~ s/\(\)|\[\]|\{\}//;
+
+    # Строки эквивалентны.
+    # Если ничего не было удалено, значит больше парных скобок нет.
+    # Базовый случай для выхода из рекурсии.
+    if ( $new_string eq $string ) {
+        return $new_string;
+    }
+    else {
+        return delete_balanced_brackets_recursively( $new_string );
+    }
 }
 
 =head2 _validate_data_or_die
