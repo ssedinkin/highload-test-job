@@ -16,6 +16,8 @@ use lib::abs '../lib';
 use Test::Spec;
 use Test::Exception;
 
+use StringChecker;
+
 use_ok 'Brackets';
 
 describe 'Brackets::check_brackets_balance' => sub {
@@ -157,52 +159,17 @@ describe 'Brackets::delete_balanced_brackets_recursively' => sub {
 };
 
 describe 'Brackets::_validate_data_or_die' => sub {
-    before each => sub {
-        $@ = undef;
-    };
+    it 'dies' => sub {
+        StringChecker->expects( '_validate_data_or_die' )->returns( sub { die } );
 
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die() };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( [] ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( {} ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "string expected"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( '' ) };
-        ok $@ =~ /string expected/;
-    };
-
-    it 'dies with error "wrong sting"' => sub {
-        dies_ok sub { Brackets::_validate_data_or_die( '[abc]' ) };
-        ok $@ =~ /wrong string/;
+        dies_ok sub { Brackets::_validate_data_or_die( 'any_invalid_data' ) };
     };
 
     it 'returns 1' => sub {
-        my $allow_empty_string = 1;
+        StringChecker->expects( '_validate_data_or_die' )->returns( 1 );
 
         is
-            Brackets::_validate_data_or_die( '', $allow_empty_string ),
-            1;
-    };
-
-    it 'returns 1' => sub {
-        is
-            Brackets::_validate_data_or_die( '[]' ),
-            1;
-    };
-
-    it 'returns 1' => sub {
-        is
-            Brackets::_validate_data_or_die( '[()[]{]' ),
+            Brackets::_validate_data_or_die( 'any_valid_data' ),
             1;
     };
 };
