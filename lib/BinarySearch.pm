@@ -68,4 +68,30 @@ sub _check_array {
     return 1;
 }
 
+=head2 _check_element
+
+Проверить входящие данные. На входе число?
+Если на входе не число, упадет.
+
+IN:
+    $data - данные, которые проверяем
+
+OUT:
+    die - $data - не число
+    1   - $data - число
+
+=cut
+
+sub _check_element {
+    my ( $data ) = @_;
+
+    confess 'element must be number'  unless defined $data && !ref $data;
+
+    my $numbers_regexp = qr/^-?\d+(.\d+)?$/;
+
+    confess 'element must be number'  unless $data =~ /$numbers_regexp/;
+
+    return 1;
+}
+
 1;
