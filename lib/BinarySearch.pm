@@ -34,6 +34,7 @@ sub search {
     my ( $element, $array ) = @_;
 
     _check_array( $array );
+    _check_element( $element );
 }
 
 =head2 _check_array
