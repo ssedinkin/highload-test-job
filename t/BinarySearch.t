@@ -136,6 +136,44 @@ describe 'BinarySearch::_check_element' => sub {
     };
 };
 
+describe 'BinarySearch::_check_eq_elements' => sub {
+    it 'returns 0' => sub {
+        is
+            BinarySearch::_check_eq_elements( 0, -0.5 ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        is
+            BinarySearch::_check_eq_elements( 0, 1 ),
+            0;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_eq_elements( 123.666, 123.666 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_eq_elements( -123.666, -123.666 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_eq_elements( 0, 0 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_eq_elements( 1, 1 ),
+            1;
+    };
+};
+
 describe 'BinarySearch::search' => sub {
     it 'dies' => sub {
         BinarySearch->expects( '_check_array' )->returns( sub { die } );
