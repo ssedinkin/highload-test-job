@@ -35,6 +35,10 @@ sub search {
 
     _check_array( $array );
     _check_element( $element );
+
+    if ( scalar @$array == 1 ) {
+        return _check_eq_elements( $array->[0], $element );
+    }
 }
 
 =head2 _check_array
