@@ -15,4 +15,25 @@ use Test::Exception;
 
 use_ok 'BinarySearch';
 
+describe 'BinarySearch::_check_data' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "array expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data() };
+        ok $@ =~ /array expected/;
+    };
+
+    it 'dies with error "array expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data( '' ) };
+        ok $@ =~ /array expected/;
+    };
+
+    it 'dies with error "array expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data( {} ) };
+        ok $@ =~ /array expected/;
+    };
+};
+
 runtests unless caller;
