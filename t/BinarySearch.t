@@ -39,6 +39,11 @@ describe 'BinarySearch::_check_data' => sub {
         dies_ok sub { BinarySearch::_check_data( [] ) };
         ok $@ =~ /not empty array expected/;
     };
+
+    it 'dies with error "only numbers expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data( [ 1, -2, -7.456, 5, 'asd' ] ) };
+        ok $@ =~ /only numbers expected/;
+    };
 };
 
 runtests unless caller;
