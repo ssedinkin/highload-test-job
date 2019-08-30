@@ -75,4 +75,11 @@ describe 'BinarySearch::_check_data' => sub {
     };
 };
 
+describe 'BinarySearch::search' => sub {
+    it 'dies' => sub {
+        BinarySearch->expects( '_check_data' )->returns( sub { die } );
+        dies_ok sub { BinarySearch::search( [] ) };
+    };
+};
+
 runtests unless caller;
