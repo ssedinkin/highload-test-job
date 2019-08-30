@@ -22,7 +22,7 @@ OUT:
     die - $data - не массив
           $data - пустой массив
           $data - неотсортированный массив
-    1   - $data - массив
+    1   - $data - на входе отсортированный массив
 
 =cut
 
@@ -41,6 +41,8 @@ sub _check_data {
     my @sorted_numbers = sort { $a <=> $b } @$data;
 
     confess 'sorted array expected'  unless Compare( $data, \@sorted_numbers );
+
+    return 1;
 }
 
 1;
