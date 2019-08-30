@@ -44,6 +44,11 @@ describe 'BinarySearch::_check_data' => sub {
         dies_ok sub { BinarySearch::_check_data( [ 1, -2, -7.456, 5, 'asd' ] ) };
         ok $@ =~ /only numbers expected/;
     };
+
+    it 'dies with error "sorted array expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data( [ 1, -2, -7.456, 5 ] ) };
+        ok $@ =~ /sorted array expected/;
+    };
 };
 
 runtests unless caller;
