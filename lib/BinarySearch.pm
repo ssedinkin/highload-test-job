@@ -29,6 +29,12 @@ sub _check_data {
 
     confess 'array expected'            unless $data && ref $data eq 'ARRAY';
     confess 'not empty array expected'  unless scalar @$data;
+
+    my $numbers_regexp = qr/^-?\d+(.\d+)?$/;
+
+    foreach my $element ( @$data ) {
+        confess 'only numbers expected'  unless $element =~ /$numbers_regexp/;
+    }
 }
 
 1;
