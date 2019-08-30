@@ -34,6 +34,11 @@ describe 'BinarySearch::_check_data' => sub {
         dies_ok sub { BinarySearch::_check_data( {} ) };
         ok $@ =~ /array expected/;
     };
+
+    it 'dies with error "not empty array expected"' => sub {
+        dies_ok sub { BinarySearch::_check_data( [] ) };
+        ok $@ =~ /not empty array expected/;
+    };
 };
 
 runtests unless caller;
