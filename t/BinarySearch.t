@@ -186,6 +186,22 @@ describe 'BinarySearch::search' => sub {
         BinarySearch->expects( '_check_element' )->returns( sub { die } );
         dies_ok sub { BinarySearch::search() };
     };
+
+    it 'returns 1' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 1, [ 1 ] ),
+            1;
+    };
+
+    it 'returns 0' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 1, [ 5 ] ),
+            0;
+    };
 };
 
 runtests unless caller;
