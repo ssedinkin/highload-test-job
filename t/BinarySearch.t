@@ -174,6 +174,32 @@ describe 'BinarySearch::_check_eq_elements' => sub {
     };
 };
 
+describe 'BinarySearch::_get_median_value_and_number' => sub {
+    it 'returns expected value and position' => sub {
+        is_deeply
+            [ BinarySearch::_get_median_value_and_position( [ 123, 456 ] ) ],
+            [ 456, 1 ];
+    };
+
+    it 'returns expected value and position' => sub {
+        is_deeply
+            [ BinarySearch::_get_median_value_and_position( [ 123, 456, 777 ] ) ],
+            [ 456, 1 ];
+    };
+
+    it 'returns expected value and position' => sub {
+        is_deeply
+            [ BinarySearch::_get_median_value_and_position( [ 123, 456, 777, 778 ] ) ],
+            [ 777, 2 ];
+    };
+
+    it 'returns expected value and position' => sub {
+        is_deeply
+            [ BinarySearch::_get_median_value_and_position( [ 123, 456, 777, 778, 999 ] ) ],
+            [ 777, 2 ];
+    };
+};
+
 describe 'BinarySearch::search' => sub {
     it 'dies' => sub {
         BinarySearch->expects( '_check_array' )->returns( sub { die } );
