@@ -9,6 +9,7 @@ package BinarySearch;
 use strict;
 use warnings;
 use Carp qw/ confess /;
+use Data::Compare;
 
 =head2 _check_data
 
@@ -20,6 +21,7 @@ IN:
 OUT:
     die - $data - не массив
           $data - пустой массив
+          $data - неотсортированный массив
     1   - $data - массив
 
 =cut
@@ -35,6 +37,10 @@ sub _check_data {
     foreach my $element ( @$data ) {
         confess 'only numbers expected'  unless $element =~ /$numbers_regexp/;
     }
+
+    my @sorted_numbers = sort { $a <=> $b } @$data;
+
+    confess 'sorted array expected'  unless Compare( $data, \@sorted_numbers );
 }
 
 1;
