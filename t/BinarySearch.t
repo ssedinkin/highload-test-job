@@ -221,11 +221,67 @@ describe 'BinarySearch::search' => sub {
             1;
     };
 
+    it 'returns 1' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 1, [ 1, 5 ] ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 5, [ 1, 5, 88 ] ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 1, [ 1, 5, 7, 77, 87, 123, 355, 56777 ] ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 56777, [ 1, 5, 7, 77, 87, 123, 355, 56777 ] ),
+            1;
+    };
+
     it 'returns 0' => sub {
         BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
         BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
         is
             BinarySearch::search( 1, [ 5 ] ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 1, [ 0, 5 ] ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 0, [ 1, 5, 7, 77, 87, 123, 355, 56777 ] ),
+            0;
+    };
+
+    it 'returns 0' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 )->any_number;
+        BinarySearch->expects( '_check_element' )->returns( 1 )->any_number;
+        is
+            BinarySearch::search( 555, [ 1, 5, 7, 77, 87, 123, 355, 56777 ] ),
             0;
     };
 };
