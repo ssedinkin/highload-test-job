@@ -6,6 +6,7 @@
 
 ## Использовал perl-модули
 - lib::abs
+- Data::Compare
 - Test::Spec
 - Test::Exception
 - DDP (если надо дебажить)
