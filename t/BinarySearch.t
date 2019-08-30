@@ -75,6 +75,67 @@ describe 'BinarySearch::_check_array' => sub {
     };
 };
 
+describe 'BinarySearch::_check_element' => sub {
+    before each => sub {
+        $@ = undef;
+    };
+
+    it 'dies with error "element must be number"' => sub {
+        dies_ok sub { BinarySearch::_check_element() };
+        ok $@ =~ /element must be number/;
+    };
+
+    it 'dies with error "element must be number"' => sub {
+        dies_ok sub { BinarySearch::_check_element( {} ) };
+        ok $@ =~ /element must be number/;
+    };
+
+    it 'dies with error "element must be number"' => sub {
+        dies_ok sub { BinarySearch::_check_element( [] ) };
+        ok $@ =~ /element must be number/;
+    };
+
+    it 'dies with error "element must be number"' => sub {
+        dies_ok sub { BinarySearch::_check_element( '' ) };
+        ok $@ =~ /element must be number/;
+    };
+
+    it 'dies with error "element must be number"' => sub {
+        dies_ok sub { BinarySearch::_check_element( 'abc' ) };
+        ok $@ =~ /element must be number/;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_element( 123 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_element( -123 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_element( 0 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_element( -123.566 ),
+            1;
+    };
+
+    it 'returns 1' => sub {
+        is
+            BinarySearch::_check_element( 123.666 ),
+            1;
+    };
+};
+
 describe 'BinarySearch::search' => sub {
     it 'dies' => sub {
         BinarySearch->expects( '_check_array' )->returns( sub { die } );
