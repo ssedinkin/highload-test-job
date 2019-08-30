@@ -31,10 +31,10 @@ OUT:
 sub search {
     my ( $element, $array ) = @_;
 
-    _check_data( $array );
+    _check_array( $array );
 }
 
-=head2 _check_data
+=head2 _check_array
 
 Проверить входящие данные. Это массив?
 
@@ -49,7 +49,7 @@ OUT:
 
 =cut
 
-sub _check_data {
+sub _check_array {
     my ( $data ) = @_;
 
     confess 'array expected'            unless $data && ref $data eq 'ARRAY';
