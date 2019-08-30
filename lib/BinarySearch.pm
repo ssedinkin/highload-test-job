@@ -92,4 +92,25 @@ sub _check_element {
     return 1;
 }
 
+=head2 _check_eq_elements
+
+Число 1 равно числу 2?
+Проверок нет. Считаем, что если пришли сюда, данные валидны.
+
+IN:
+    $first  - число 1
+    $second - число 2
+
+OUT:
+    1 - число 1 равно числу 2
+    0 - число 1 не равно числу 2
+
+=cut
+
+sub _check_eq_elements {
+    my ( $first, $second ) = @_;
+
+    return $first == $second ? 1 : 0;
+}
+
 1;
