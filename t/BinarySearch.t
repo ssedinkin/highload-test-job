@@ -15,69 +15,69 @@ use Test::Exception;
 
 use_ok 'BinarySearch';
 
-describe 'BinarySearch::_check_data' => sub {
+describe 'BinarySearch::_check_array' => sub {
     before each => sub {
         $@ = undef;
     };
 
     it 'dies with error "array expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data() };
+        dies_ok sub { BinarySearch::_check_array() };
         ok $@ =~ /array expected/;
     };
 
     it 'dies with error "array expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data( '' ) };
+        dies_ok sub { BinarySearch::_check_array( '' ) };
         ok $@ =~ /array expected/;
     };
 
     it 'dies with error "array expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data( {} ) };
+        dies_ok sub { BinarySearch::_check_array( {} ) };
         ok $@ =~ /array expected/;
     };
 
     it 'dies with error "not empty array expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data( [] ) };
+        dies_ok sub { BinarySearch::_check_array( [] ) };
         ok $@ =~ /not empty array expected/;
     };
 
     it 'dies with error "only numbers expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data( [ 1, -2, -7.456, 5, 'asd' ] ) };
+        dies_ok sub { BinarySearch::_check_array( [ 1, -2, -7.456, 5, 'asd' ] ) };
         ok $@ =~ /only numbers expected/;
     };
 
     it 'dies with error "sorted array expected"' => sub {
-        dies_ok sub { BinarySearch::_check_data( [ 1, -2, -7.456, 5 ] ) };
+        dies_ok sub { BinarySearch::_check_array( [ 1, -2, -7.456, 5 ] ) };
         ok $@ =~ /sorted array expected/;
     };
 
     it 'returns 1' => sub {
         is
-            BinarySearch::_check_data( [ 1234 ] ),
+            BinarySearch::_check_array( [ 1234 ] ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            BinarySearch::_check_data( [ 0, 0 ] ),
+            BinarySearch::_check_array( [ 0, 0 ] ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            BinarySearch::_check_data( [ -0.5, 0, 0.6, 78 ] ),
+            BinarySearch::_check_array( [ -0.5, 0, 0.6, 78 ] ),
             1;
     };
 
     it 'returns 1' => sub {
         is
-            BinarySearch::_check_data( [ -555, -0.5, 0, 0.6, 78, 142.55 ] ),
+            BinarySearch::_check_array( [ -555, -0.5, 0, 0.6, 78, 142.55 ] ),
             1;
     };
 };
 
 describe 'BinarySearch::search' => sub {
     it 'dies' => sub {
-        BinarySearch->expects( '_check_data' )->returns( sub { die } );
+        BinarySearch->expects( '_check_array' )->returns( sub { die } );
         dies_ok sub { BinarySearch::search( [] ) };
     };
 };
