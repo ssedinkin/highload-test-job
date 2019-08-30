@@ -39,6 +39,21 @@ sub search {
     if ( scalar @$array == 1 ) {
         return _check_eq_elements( $array->[0], $element );
     }
+
+    my ( $value, $position ) = _get_median_value_and_position( $array );
+
+    return 1  if _check_eq_elements( $value, $element );
+
+    if ( $element < $value ) {
+        my @new_array = @$array[ 0 .. $position-1 ];
+
+        return search( $element, \@new_array );
+    }
+    else {
+        my @new_array = @$array[ $position+1 .. $#$array ];
+
+        return search( $element, \@new_array );
+    }
 }
 
 =head2 _get_median_value_and_position
