@@ -41,6 +41,28 @@ sub search {
     }
 }
 
+=head2 _get_median_value_and_position
+
+Вернет значение и позицию медианы в массиве.
+Медиана - средний элемент.
+Работает как с массивом из четного числа элементов, так и нечетным.
+
+IN:
+    $arr - массив
+
+OUT:
+    value, position - значение среднего элемента и его позиция в массиве
+
+=cut
+
+sub _get_median_value_and_position {
+    my ( $arr ) = @_;
+
+    my $position = int( ( scalar @$arr ) / 2 );
+
+    return $$arr[ $position ], $position;
+}
+
 =head2 _check_array
 
 Проверить входящие данные. Это массив?
