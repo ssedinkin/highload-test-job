@@ -19,6 +19,7 @@ IN:
 
 OUT:
     die - $data - не массив
+          $data - пустой массив
     1   - $data - массив
 
 =cut
@@ -26,7 +27,8 @@ OUT:
 sub _check_data {
     my ( $data ) = @_;
 
-    confess 'array expected'  unless $data && ref $data eq 'ARRAY';
+    confess 'array expected'            unless $data && ref $data eq 'ARRAY';
+    confess 'not empty array expected'  unless scalar @$data;
 }
 
 1;
