@@ -139,7 +139,14 @@ describe 'BinarySearch::_check_element' => sub {
 describe 'BinarySearch::search' => sub {
     it 'dies' => sub {
         BinarySearch->expects( '_check_array' )->returns( sub { die } );
-        dies_ok sub { BinarySearch::search( [] ) };
+        BinarySearch->expects( '_check_element' )->never;
+        dies_ok sub { BinarySearch::search() };
+    };
+
+    it 'dies' => sub {
+        BinarySearch->expects( '_check_array' )->returns( 1 );
+        BinarySearch->expects( '_check_element' )->returns( sub { die } );
+        dies_ok sub { BinarySearch::search() };
     };
 };
 
