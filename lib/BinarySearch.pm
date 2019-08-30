@@ -11,6 +11,8 @@ use warnings;
 use Carp qw/ confess /;
 use Data::Compare;
 
+my $numbers_regexp = qr/^-?\d+(.\d+)?$/;
+
 =head2 search
 
 Метод поиска элемента в массиве.
@@ -55,8 +57,6 @@ sub _check_array {
     confess 'array expected'            unless $data && ref $data eq 'ARRAY';
     confess 'not empty array expected'  unless scalar @$data;
 
-    my $numbers_regexp = qr/^-?\d+(.\d+)?$/;
-
     foreach my $element ( @$data ) {
         confess 'only numbers expected'  unless $element =~ /$numbers_regexp/;
     }
@@ -86,9 +86,6 @@ sub _check_element {
     my ( $data ) = @_;
 
     confess 'element must be number'  unless defined $data && !ref $data;
-
-    my $numbers_regexp = qr/^-?\d+(.\d+)?$/;
-
     confess 'element must be number'  unless $data =~ /$numbers_regexp/;
 
     return 1;
